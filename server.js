@@ -42,6 +42,15 @@ app.get('/logs/new', (req, res) => {
     res.render('./New')
 })
 
+app.delete('/logs/:id', async (req, res) => {
+    try{
+        await Log.findByIdAndDelete(req.params.id)
+        res.redirect('/logs')
+    } catch(err) {
+        res.send(err.message)
+    }
+})
+
 app.get('/logs/:id', async (req, res) => {
     try {
         const log = await Log.findById(req.params.id)

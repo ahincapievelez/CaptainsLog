@@ -8,6 +8,10 @@ function Show(props) {
             <p>{props.log.entry}</p>
             <p>{props.log.shipIsBroken ? 'Ship is broken' : 'Ship is not broken'}</p>
             <p>Created: {props.log.createdAt.toString()}</p>
+            <br /><br />
+            <form action={`/logs/${props.log._id}?_method=DELETE`} method="POST">
+                <button>Delete</button>
+            </form>
             <br />
             <a href="/logs">Back</a>
         </div>

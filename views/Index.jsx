@@ -12,7 +12,7 @@ function Index(props) {
                     </li>
                 )}
             </ul>
-            <a href="/logs/new">Add Pokemon</a>
+            <a href="/logs/new">Add New Log</a>
         </div>
     )
 }
