@@ -51,13 +51,22 @@ app.delete('/logs/:id', async (req, res) => {
     }
 })
 
-app.get('/logs/:id', async (req, res) => {
-    try {
-        const log = await Log.findById(req.params.id)
-        res.render('./Show', { log: log})
-    } catch(err) {
-        console.log(err.message)
+app.put('/logs/:id', async (req, res) => {
+
+    if (req.body.shipIsBroken) {
+        req.body.shipIsBroken = true
+    } else {
+        req.body.shipIsBroken = false
     }
+
+    try {
+        // pass the id to find the document in the db and the form data (req.body) to update it
+        await Log.findByIdAndUpdate(req.params.id, req.body)
+        res.redirect(`/logs/${req.params.id}`)
+    } catch(err) {
+        console.log(err)
+        res.send(err.message)
+   }
 })
 
 app.post('/logs', async (req, res) => {
@@ -72,6 +81,25 @@ app.post('/logs', async (req, res) => {
         const log = await Log.create(req.body)
         console.log(log)
         res.redirect('/logs')
+    } catch(err) {
+        console.log(err.message)
+    }
+})
+
+app.get('/logs/:id/edit', async (req, res) => {
+    try {
+        const log = await Log.findById(req.params.id)
+        res.render('./Edit', { log: log })
+    } catch(err) {
+        console.log(err)
+        res.send(err.message)
+    } 
+})
+
+app.get('/logs/:id', async (req, res) => {
+    try {
+        const log = await Log.findById(req.params.id)
+        res.render('./Show', { log: log})
     } catch(err) {
         console.log(err.message)
     }
