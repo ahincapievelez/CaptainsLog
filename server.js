@@ -15,6 +15,7 @@ connectDB()
 
 // Load the log model
 const Log = require('./models/logs')
+console.log(Log)
 
 const { createEngine } = require('jsx-view-engine')
 app.set('view engine', 'jsx')
