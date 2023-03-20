@@ -34,11 +34,20 @@ app.get('/', (req, res) => {
 
 app.get('/logs', async (req, res) => {
     const logs = await Log.find()
-    res.render('./Index', { log: logs })
+    res.render('./Index', { logs: logs })
 })
 
 app.get('/logs/new', (req, res) => {
     res.render('./New')
+})
+
+app.get('/logs/:id', async (req, res) => {
+    try {
+        const log = await Log.findById(req.params.id)
+        res.render('./Show', { log: log})
+    } catch(err) {
+        console.log(err.message)
+    }
 })
 
 app.post('/logs', async (req, res) => {
