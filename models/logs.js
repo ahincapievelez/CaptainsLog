@@ -1,16 +1,19 @@
-const mongoose = require('mongoose')
-
-const Schema = mongoose.Schema
-
-const logsSchema = new Schema({
-    title: {
-        type: String,
-        required: true
+const logs = [
+    {
+        title:'Adventure Galley',
+        entry: 'Adventure Galley, also known as Adventure, was an English merchant ship captained by Scottish sea captain William Kidd.',
+        shipIsBroken: true
     },
-    entry: {type: String},
-    shipIsBroken: {type: Boolean}
-}, {timestamps: true})
+    {
+        title:'Queen Annes Revenge',
+        entry: 'Queen Annes Revenge was an early-18th-century ship, most famously used as a flagship by Edward Teach, better known by his nickname Blackbeard.',
+        shipIsBroken: true
+    },
+    {
+        title:'Dancing Molly',
+        entry: 'The Dancing Molly was a pirate sloop famous during the Oyster Wars for humiliating Virginia Governor William E. Cameron as he personally attempted its capture on 28 February 1883.',
+        shipIsBroken: false
+    }
+];
 
-const Log = mongoose.model('logs', logsSchema)
-
-module.exports = Log
+module.exports = logs
